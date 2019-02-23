@@ -30,19 +30,38 @@ namespace AutoTower
 		{
 			base.Form_OnClosed(sender, e);
 		}
-		
+
+		private void btnStartStop_Click(object sender, EventArgs e)
+		{
+			if (IsAlive)
+			{
+				StopThread();
+			}
+			else
+			{
+				StartThread();
+			}
+		}
+
+		private void btnExit_Click(object sender, EventArgs e)
+		{
+			this.Close();
+		}
+
 		protected override void OnThreadStart()
 		{
 			base.OnThreadStart();
 			groupBox1.Enabled = false;
 			m_thread.Slot = cmbSlot.SelectedIndex + 1;
 			m_thread.Difficulty = cmbDifficulty.SelectedIndex + 1;
+			btnStartStop.Text = "■ 停止";
 		}
 
 		protected override void OnThreadStop()
 		{
 			base.OnThreadStop();
-			groupBox1.Enabled = true;			
-		}
+			groupBox1.Enabled = true;
+			btnStartStop.Text = "▶ 开始";
+		}		
 	}
 }
