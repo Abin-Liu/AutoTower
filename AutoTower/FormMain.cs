@@ -50,16 +50,21 @@ namespace AutoTower
 
 		protected override void OnThreadStart()
 		{
-			base.OnThreadStart();
+			base.OnThreadStart();			
+			m_thread.Slot = cmbSlot.SelectedIndex;
+			m_thread.Difficulty = cmbDifficulty.SelectedIndex;
+			m_thread.Alert = chkAlert.Checked;
+
+			// 更新UI元素
 			groupBox1.Enabled = false;
-			m_thread.Slot = cmbSlot.SelectedIndex + 1;
-			m_thread.Difficulty = cmbDifficulty.SelectedIndex + 1;
 			btnStartStop.Text = "■ 停止";
 		}
 
 		protected override void OnThreadStop()
 		{
 			base.OnThreadStop();
+
+			// 更新UI元素
 			groupBox1.Enabled = true;
 			btnStartStop.Text = "▶ 开始";
 		}		

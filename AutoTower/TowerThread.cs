@@ -5,8 +5,9 @@ namespace AutoTower
 {
 	class TowerThread : AutomationThread
 	{		
-		public int Difficulty { get; set; } = 3; // 1=easy, 2=normal, 3=hard
-		public int Slot { get; set; } = 3; // 1=left, 2=middle, 3=right	
+		public int Difficulty { get; set; } = 2; // 0=简单, 1=普通, 2=困难
+		public int Slot { get; set; } = 2; // 0=左, 1=中, 2=右	
+		public bool Alert { get; set; } = false;
 
 		public TowerThread()
 		{
@@ -43,7 +44,7 @@ namespace AutoTower
 			{
 				WaitForTowerUI(0); // 等待回到初始界面
 				DelayBeforeAction();
-				SelectSlot(); // 选择关卡：左/中/右
+				LeftClick(681 + 285 * Slot, 712); // 选择关卡：左/中/右
 
 				// 检查是否需要花钻石重置挑战时间
 				if (WaitForPixel(921, 608, 90, 132, 0, 1500))
@@ -56,7 +57,7 @@ namespace AutoTower
 				// 挑战流程
 				WaitForPixel(920, 752, 255, 142, 121); // 等待难度选择界面
 				DelayBeforeAction();
-				SelectDifficulty(); // 选择难度：简单/普通/困难
+				LeftClick(904, 487 + 132 * Difficulty); // 选择难度：简单/普通/困难
 
 				WaitForPixel(76, 736, 206, 115, 57); // 等待队伍选择界面
 				DelayBeforeAction(m_rand.Next(2000, 6000)); // 随机等待2-6秒以防游戏断连
@@ -75,51 +76,18 @@ namespace AutoTower
 				// 检查是否胜利
 				else if (WaitForPixel(466, 535, 173, 140, 99, 1000) && WaitForPixel(1104, 563, 165, 139, 98, 1000))
 				{
-					// 已无继续操作的必要，响铃直到用户终止线程
-					Alerting = true;
+					// 响铃提醒
+					if (Alert)
+					{
+						Alerting = true;
+					}
+
+					// 已无继续操作的必要，等待用户终止线程
 					while (true)
 					{
-						Sleep(500);
+						Sleep(1000);
 					}					
 				}				
-			}
-		}
-
-		// 点击挑战按钮
-		private void SelectSlot()
-		{
-			switch (Slot)
-			{
-				case 1:
-					LeftClick(681, 712); // 左
-					break;
-
-				case 2:
-					LeftClick(974, 712); // 中
-					break;
-
-				default:
-					LeftClick(1251, 712); // 右
-					break;
-			}
-		}
-
-		// 点击相应的难度按钮
-		private void SelectDifficulty()
-		{
-			switch (Difficulty)
-			{
-				case 1:
-					LeftClick(904, 487); // 简单
-					break;
-
-				case 2:
-					LeftClick(904, 617); // 普通
-					break;
-
-				default:
-					LeftClick(904, 752); // 困难
-					break;
 			}
 		}
 	}
