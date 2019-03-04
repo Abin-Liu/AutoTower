@@ -34,9 +34,9 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Automation, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Automation, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Automation\Automation\bin\Automation.dll</HintPath>
+      <HintPath>..\..\Automation Libs\Automation\Automation\bin\Automation.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
