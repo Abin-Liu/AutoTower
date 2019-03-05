@@ -33,14 +33,7 @@ namespace AutoTower
 
 		private void btnStartStop_Click(object sender, EventArgs e)
 		{
-			if (IsAlive)
-			{
-				StopThread();
-			}
-			else
-			{
-				StartThread();
-			}
+			ToggleThread();
 		}
 
 		private void btnExit_Click(object sender, EventArgs e)
