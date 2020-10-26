@@ -16,20 +16,9 @@ namespace AutoTower
 
 		private void Form1_Load(object sender, EventArgs e)
 		{
-			base.Form_OnLoad(sender, e);
 			cmbSlot.SelectedIndex = 2;
 			cmbDifficulty.SelectedIndex = 2;
-		}
-
-		private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
-		{
-			base.Form_OnClosing(sender, e);
-		}
-
-		private void Form1_FormClosed(object sender, FormClosedEventArgs e)
-		{
-			base.Form_OnClosed(sender, e);
-		}
+		}		
 
 		private void btnStartStop_Click(object sender, EventArgs e)
 		{
